@@ -1,0 +1,38 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Commons Connect</title><link rel="stylesheet" href="assets/style.css"></head>
+<body>
+<header class="topbar"><div class="brand">Commons Connect <small>Signage</small></div><nav class="nav"><a class="active" href="index.html">ホーム</a><a href="checkin.html">チェックイン</a><a href="manager.html">運営</a><a href="studio.html">設定</a></nav></header>
+<main class="page">
+<section class="hero">
+<div class="hero-main"><div class="eyebrow">COMMON HOBBIES, NEW CONVERSATIONS</div><h1>今日は、誰と<br>話しますか？</h1><p class="lead">共通の趣味から、いつもとは違う会話のきっかけを見つけよう。</p><div class="hero-actions"><button class="btn" onclick="document.getElementById('hobbies').scrollIntoView({behavior:'smooth'})">趣味から探す</button><a class="btn alt" href="checkin.html">スマホでチェックイン</a></div></div>
+<div class="hero-side"><div><div class="eyebrow">TODAY</div><div class="big-number" id="todayCount">0</div><p class="subtle">人が今日Commonsにいます</p></div><div class="notice">気になる人を見つけたら、プロフィールをタップ。</div></div>
+</section>
+<div class="section-head" id="hobbies"><h2>趣味から見つける</h2><span class="subtle">タップすると、今日いる人を表示します</span></div>
+<section class="grid" id="hobbyGrid"></section>
+<div class="section-head"><h2>今日いる人</h2><span class="subtle" id="filterLabel">すべて</span></div>
+<section class="people-grid" id="peopleGrid"></section>
+</main>
+<div class="modal" id="profileModal"><div class="modal-card"><button class="close" onclick="closeModal()">×</button><div id="profileBody"></div></div></div>
+<footer class="footer">Commons Connect Prototype v1.0</footer>
+<script src="assets/data.js"></script><script src="assets/app.js"></script>
+<script>
+let currentFilter=null;
+function render(){
+ const people=checkedPeople(); document.getElementById('todayCount').textContent=people.length;
+ const hg=document.getElementById('hobbyGrid');
+ hg.innerHTML=window.HOBBIES.slice(0,6).map(h=>{
+  const c=people.filter(p=>p.hobbies.includes(h.name)).length;
+  return `<button class="card hobby-card" onclick="filterHobby('${h.name}')"><span class="count">${c}人</span><div class="icon">${h.icon}</div><h3>${h.name}</h3><div class="subtle">${h.desc}</div></button>`
+ }).join('');
+ const list=currentFilter?people.filter(p=>p.hobbies.includes(currentFilter)):people;
+ document.getElementById('filterLabel').textContent=currentFilter?`${currentFilter}が好きな人`:'すべて';
+ document.getElementById('peopleGrid').innerHTML=list.length?list.map(p=>`<button class="card person-card" onclick="openProfile(${p.id})"><div class="avatar">${p.avatar}</div><h3>${esc(p.name)}</h3><div class="subtle">${esc(p.dept)}</div><div style="margin-top:12px"><span class="badge ${p.type==='guest'?'guest':''}">${p.type==='guest'?'ゲスト':'今日います'}</span></div><div class="chips">${p.hobbies.map(h=>`<span class="chip">${hobbyIcon(h)} ${h}</span>`).join('')}</div></button>`).join(''):`<div class="card empty">今日はまだ該当する人がいません。</div>`;
+}
+function filterHobby(name){currentFilter=currentFilter===name?null:name;render();document.getElementById('peopleGrid').scrollIntoView({behavior:'smooth'})}
+function openProfile(id){
+ const p=getPeople().find(x=>x.id===id); if(!p)return;
+ document.getElementById('profileBody').innerHTML=`<div class="profile-head"><div class="avatar">${p.avatar}</div><div><h2 style="margin:0">${esc(p.name)}</h2><div class="subtle">${esc(p.dept)}</div></div></div><div class="chips" style="margin:26px 0">${p.hobbies.map(h=>`<span class="chip">${hobbyIcon(h)} ${h}</span>`).join('')}</div><h3>最近ハマっていること</h3><p class="lead" style="font-size:18px">${esc(p.message)}</p><div class="notice">共通点があったら、気軽に話しかけてみよう。</div>`;
+ document.getElementById('profileModal').classList.add('show');
+}
+function closeModal(){document.getElementById('profileModal').classList.remove('show')}
+render();
+</script></body></html>

@@ -1,0 +1,19 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Studio | Commons Connect</title><link rel="stylesheet" href="assets/style.css"></head>
+<body>
+<header class="topbar"><div class="brand">Commons Connect <small>Studio</small></div><nav class="nav"><a href="index.html">サイネージ</a><a href="checkin.html">チェックイン</a><a href="manager.html">運営</a><a class="active" href="studio.html">設定</a></nav></header>
+<main class="page">
+<div class="section-head"><div><div class="eyebrow">SERVICE SETTINGS</div><h2>表示・運用設定</h2></div></div>
+<section class="manager-grid">
+<div class="panel" style="padding:28px"><h2>サイネージ設定</h2>
+<div class="setting-row"><div><strong>トップメッセージ</strong><div class="subtle">現在：今日は、誰と話しますか？</div></div><button class="btn alt">編集</button></div>
+<div class="setting-row"><div><strong>今日いる人の表示</strong><div class="subtle">プロフィールカードを表示</div></div><button class="switch">ON</button></div>
+<div class="setting-row"><div><strong>ゲスト表示</strong><div class="subtle">ゲストを翌日に自動非表示</div></div><button class="switch">ON</button></div>
+<div class="setting-row"><div><strong>表示テーマ</strong><div class="subtle">Commons ナチュラル</div></div><button class="btn alt">変更</button></div>
+</div>
+<div class="panel" style="padding:28px"><h2>趣味カテゴリー</h2><div id="hobbyList"></div><button class="btn" style="margin-top:18px">＋ 趣味を追加</button></div>
+</section>
+<section class="panel" style="padding:28px;margin-top:18px"><h2>将来の接続先</h2><p class="lead" style="font-size:17px">現在はブラウザのLocalStorageで動く試作品です。GMO ALTUSや社内DBへ移行する際は、登録・チェックイン・サイネージ表示を共通APIで接続します。</p><div class="chips"><span class="chip">SSO</span><span class="chip">社員証</span><span class="chip">来館履歴</span><span class="chip">満足度調査</span><span class="chip">利用分析</span></div></section>
+</main>
+<script src="assets/data.js"></script><script>
+document.getElementById('hobbyList').innerHTML=window.HOBBIES.map(h=>`<div class="setting-row"><span>${h.icon} <strong>${h.name}</strong></span><button class="btn alt">編集</button></div>`).join('');
+</script></body></html>

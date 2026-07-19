@@ -1,0 +1,91 @@
+
+:root{
+  --ink:#20302a;--muted:#65736d;--paper:#f6f2e9;--card:#fffdf8;
+  --green:#6ea98b;--green-dark:#3d755f;--orange:#ed8c62;--line:#ded8cc;
+  --shadow:0 18px 50px rgba(41,55,48,.12);--radius:28px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",system-ui,sans-serif;color:var(--ink);background:var(--paper)}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:22px 34px;border-bottom:1px solid rgba(0,0,0,.06);background:rgba(246,242,233,.88);backdrop-filter:blur(16px);position:sticky;top:0;z-index:20}
+.brand{font-weight:800;letter-spacing:.03em;font-size:20px}
+.brand small{font-weight:500;color:var(--muted);margin-left:10px}
+.nav{display:flex;gap:10px;flex-wrap:wrap}
+.nav a{padding:10px 15px;border-radius:999px}
+.nav a.active,.nav a:hover{background:white;box-shadow:0 6px 18px rgba(0,0,0,.07)}
+.page{max-width:1240px;margin:auto;padding:38px}
+.hero{display:grid;grid-template-columns:1.35fr .65fr;gap:24px;align-items:stretch}
+.hero-main,.hero-side,.panel,.card{background:var(--card);border:1px solid rgba(0,0,0,.05);box-shadow:var(--shadow);border-radius:var(--radius)}
+.hero-main{padding:58px;min-height:390px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.hero-main:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:rgba(110,169,139,.18);right:-55px;bottom:-70px}
+.eyebrow{font-size:14px;letter-spacing:.12em;color:var(--green-dark);font-weight:800}
+h1{font-size:clamp(42px,6vw,76px);line-height:1.08;margin:16px 0 18px}
+.lead{font-size:21px;line-height:1.8;color:var(--muted);max-width:680px}
+.hero-actions{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+.btn{border:none;border-radius:18px;padding:16px 22px;font-weight:800;background:var(--green);color:white;box-shadow:0 10px 24px rgba(61,117,95,.22)}
+.btn.alt{background:white;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.hero-side{padding:30px;display:flex;flex-direction:column;justify-content:space-between}
+.big-number{font-size:78px;font-weight:900;line-height:1}
+.subtle{color:var(--muted)}
+.section-head{display:flex;align-items:end;justify-content:space-between;margin:44px 0 18px}
+.section-head h2{font-size:30px;margin:0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.hobby-card{padding:28px;min-height:180px;transition:.22s;position:relative;overflow:hidden}
+.hobby-card:hover{transform:translateY(-5px)}
+.icon{font-size:42px}
+.hobby-card h3{font-size:24px;margin:16px 0 6px}
+.count{position:absolute;right:22px;top:22px;background:#edf5f0;color:var(--green-dark);padding:8px 11px;border-radius:999px;font-weight:800}
+.people-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.person-card{padding:24px;transition:.2s}
+.person-card:hover{transform:translateY(-4px)}
+.avatar{width:68px;height:68px;border-radius:20px;background:#edf4ef;display:grid;place-items:center;font-size:36px}
+.person-card h3{margin:16px 0 4px}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;background:#edf5f0;color:var(--green-dark);padding:7px 10px;border-radius:999px;font-weight:800}
+.badge.guest{background:#fff0e9;color:#ad5735}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chip{padding:8px 11px;border-radius:999px;background:#f1eee7;font-size:13px}
+.empty{padding:50px;text-align:center;color:var(--muted)}
+.modal{position:fixed;inset:0;background:rgba(24,32,29,.48);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.modal.show{display:flex}
+.modal-card{background:white;border-radius:30px;padding:32px;max-width:520px;width:100%;box-shadow:var(--shadow)}
+.close{float:right;border:0;background:#eee;border-radius:50%;width:38px;height:38px}
+.profile-head{display:flex;gap:20px;align-items:center}
+.profile-head .avatar{width:94px;height:94px;font-size:50px}
+.form-wrap{max-width:560px;margin:34px auto;background:white;border-radius:32px;box-shadow:var(--shadow);overflow:hidden}
+.progress{height:8px;background:#ece8df}
+.progress>div{height:100%;background:var(--green);transition:.3s}
+.step{display:none;padding:34px}
+.step.active{display:block}
+.step h1{font-size:36px}
+.field{margin:18px 0}
+.field label{display:block;font-weight:800;margin-bottom:8px}
+.field input,.field select,.field textarea{width:100%;padding:16px;border:1px solid var(--line);border-radius:16px;background:#fffdf9}
+.choice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.choice{padding:16px 8px;border:1px solid var(--line);border-radius:18px;text-align:center;background:#faf8f3}
+.choice.selected{background:#e7f1eb;border-color:var(--green);color:var(--green-dark);transform:scale(1.02)}
+.choice span{display:block;font-size:28px;margin-bottom:6px}
+.step-actions{display:flex;gap:10px;margin-top:24px}
+.step-actions .btn{flex:1}
+.dashboard{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.metric{padding:24px}
+.metric strong{display:block;font-size:38px;margin-top:10px}
+.manager-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:18px}
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{text-align:left;padding:14px 10px;border-bottom:1px solid #eee}
+.switch{border:none;border-radius:999px;padding:8px 12px;background:#edf5f0;color:var(--green-dark);font-weight:800}
+.switch.off{background:#eee;color:#777}
+.setting-row{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid #eee}
+.notice{padding:14px 16px;border-radius:16px;background:#fff5e9;color:#8a5a2e}
+.footer{padding:40px;text-align:center;color:var(--muted)}
+@media(max-width:900px){
+ .hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.people-grid{grid-template-columns:repeat(2,1fr)}
+ .dashboard{grid-template-columns:repeat(2,1fr)}.manager-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+ .topbar{padding:16px}.brand small{display:none}.nav{gap:4px}.nav a{padding:8px 10px;font-size:13px}
+ .page{padding:18px}.hero-main{padding:30px;min-height:360px}h1{font-size:44px}.lead{font-size:17px}
+ .grid,.people-grid{grid-template-columns:1fr}.choice-grid{grid-template-columns:repeat(2,1fr)}
+ .dashboard{grid-template-columns:1fr 1fr}.step{padding:24px}
+}
